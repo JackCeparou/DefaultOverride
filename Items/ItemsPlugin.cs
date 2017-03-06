@@ -1,12 +1,11 @@
 using System.Linq;
 using Turbo.Plugins.Default;
+
 // this is an adaptation by Jack of a default hud plugin, all credits to KillerJohn
 namespace Turbo.Plugins.DefaultOverride.Items
 {
-
     public class ItemsPlugin : BasePlugin, IInGameWorldPainter, ICustomizer
-	{
-
+    {
         public WorldDecoratorCollection LegendaryDecorator { get; set; }
         public WorldDecoratorCollection AncientDecorator { get; set; }
         public WorldDecoratorCollection SetDecorator { get; set; }
@@ -20,9 +19,9 @@ namespace Turbo.Plugins.DefaultOverride.Items
         public WorldDecoratorCollection DeathsBreathDecorator { get; set; }
 
         public ItemsPlugin()
-		{
+        {
             Enabled = true;
-		}
+        }
 
         public override void Load(IController hud)
         {
@@ -178,7 +177,7 @@ namespace Turbo.Plugins.DefaultOverride.Items
                 {
                     Brush = Hud.Render.CreateBrush(192, 235, 120, 0, -2),
                     Radius = 1.25f,
-                    RadiusTransformator = new StandardPingRadiusTransformator (Hud, 333),
+                    RadiusTransformator = new StandardPingRadiusTransformator(Hud, 333),
                 },
                 new MapShapeDecorator(Hud)
                 {
@@ -205,7 +204,7 @@ namespace Turbo.Plugins.DefaultOverride.Items
                     Radius = 0.6f,
                     RadiusTransformator = new StandardPingRadiusTransformator(Hud, 500)
                     {
-                         RadiusMinimumMultiplier = 0.8f,
+                        RadiusMinimumMultiplier = 0.8f,
                     },
                 }
                 );
@@ -218,7 +217,7 @@ namespace Turbo.Plugins.DefaultOverride.Items
 
         private string GetItemName(IItem item)
         {
-            var name = (item.RareName != null ? item.RareName + ", " : null)+ (item.AncientRank > 0 ? "\uD83E\uDC1D " : string.Empty) + item.SnoItem.NameLocalized;
+            var name = (item.RareName != null ? item.RareName + ", " : null) + (item.AncientRank > 0 ? "\uD83E\uDC1D " : string.Empty) + item.SnoItem.NameLocalized;
 
             if (item.KeepDecision == ItemKeepDecision.LooksGood)
             {
@@ -228,12 +227,12 @@ namespace Turbo.Plugins.DefaultOverride.Items
             return name;
         }
 
-		public void PaintWorld(WorldLayer layer)
-		{
-			var items = Hud.Game.Items.Where(item => item.Location == ItemLocation.Floor);
+        public void PaintWorld(WorldLayer layer)
+        {
+            var items = Hud.Game.Items.Where(item => item.Location == ItemLocation.Floor);
 
             foreach (var item in items)
-			{
+            {
                 var legendaryDisplayed = false;
                 if (item.IsLegendary /*&& item.Unidentified/**/ && (item.SnoItem.Kind != ItemKind.craft))
                 {
@@ -285,9 +284,7 @@ namespace Turbo.Plugins.DefaultOverride.Items
                         BookDecorator.Paint(layer, item, item.FloorCoordinate, GetItemName(item));
                     }
                 }
-			}
-		}
-
+            }
+        }
     }
-
 }

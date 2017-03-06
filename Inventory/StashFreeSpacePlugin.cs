@@ -1,18 +1,17 @@
 using System.Globalization;
 using Turbo.Plugins.Default;
+
 // this is an adaptation by Jack of a default hud plugin, all credits to KillerJohn
 namespace Turbo.Plugins.DefaultOverride.Inventory
 {
-
     public class StashFreeSpacePlugin : BasePlugin, IInGameTopPainter, ICustomizer
-	{
-
+    {
         public IFont Font { get; set; }
 
-		public StashFreeSpacePlugin()
-		{
+        public StashFreeSpacePlugin()
+        {
             Enabled = true;
-		}
+        }
 
         public override void Load(IController hud)
         {
@@ -47,13 +46,11 @@ namespace Turbo.Plugins.DefaultOverride.Inventory
 
                 var layout = Font.GetTextLayout(text);
 
-                var x = tabUiElement.Rectangle.Left + (tabUiElement.Rectangle.Width * 0.94f - layout.Metrics.Width) / 2;
+                var x = tabUiElement.Rectangle.Left + ((tabUiElement.Rectangle.Width * 0.94f) - layout.Metrics.Width) / 2;
                 if (tabIndex != selectedTab) x -= tabUiElement.Rectangle.Width * 0.170f;
 
-                Font.DrawText(layout, x, tabUiElement.Rectangle.Top + tabUiElement.Rectangle.Height * 0.1f);
+                Font.DrawText(layout, x, tabUiElement.Rectangle.Top + (tabUiElement.Rectangle.Height * 0.1f));
             }
         }
-
     }
-
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Turbo.Plugins.Default;
+
 // this is an adaptation by Jack of a default hud plugin, all credits to KillerJohn
 namespace Turbo.Plugins.DefaultOverride.BuffLists
 {
