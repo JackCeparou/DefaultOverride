@@ -9,7 +9,9 @@ namespace Turbo.Plugins.DefaultOverride.BuffLists
     public class ConventionOfElementsBuffListPlugin : BasePlugin, IInGameTopPainter, ICustomizer
     {
         public bool HideWhenUiIsHidden { get; set; }
+        // change
         public bool ShowOnPlayerFeet { get; set; }
+        // end change
         public BuffPainter BuffPainter { get; set; }
 
         private BuffRuleCalculator _ruleCalculator;
@@ -24,7 +26,9 @@ namespace Turbo.Plugins.DefaultOverride.BuffLists
             base.Load(hud);
 
             HideWhenUiIsHidden = false;
+            // change
             ShowOnPlayerFeet = true;
+            // end change
             BuffPainter = new BuffPainter(Hud, true)
             {
                 Opacity = 1.0f,
@@ -124,12 +128,14 @@ namespace Turbo.Plugins.DefaultOverride.BuffLists
                 var x = portraitRect.Right;
                 var y = portraitRect.Top + portraitRect.Height * 0.51f;
 
+                // change
                 if (ShowOnPlayerFeet && (!Hud.Game.IsInTown || (player.IsOnScreen && !player.IsMe)))
                 {
                     var screenCoordinate = player.FloorCoordinate.ToScreenCoordinate();
                     x = screenCoordinate.X - _ruleCalculator.StandardIconSize * _ruleCalculator.PaintInfoList.Count / 2f;
                     y = screenCoordinate.Y + _ruleCalculator.StandardIconSize;
                 }
+                // end change
 
                 BuffPainter.PaintHorizontal(_ruleCalculator.PaintInfoList, x, y, _ruleCalculator.StandardIconSize, 0);
             }
