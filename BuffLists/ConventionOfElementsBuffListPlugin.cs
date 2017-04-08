@@ -10,7 +10,8 @@ namespace Turbo.Plugins.DefaultOverride.BuffLists
     {
         public bool HideWhenUiIsHidden { get; set; }
         // change
-        public bool ShowOnPlayerFeet { get; set; }
+        public bool ShowOnPlayer { get; set; }
+        public float OffsetZ { get; set; }
         // end change
         public BuffPainter BuffPainter { get; set; }
 
@@ -27,7 +28,8 @@ namespace Turbo.Plugins.DefaultOverride.BuffLists
 
             HideWhenUiIsHidden = false;
             // change
-            ShowOnPlayerFeet = true;
+            ShowOnPlayer = true;
+            OffsetZ = 0.0f;
             // end change
             BuffPainter = new BuffPainter(Hud, true)
             {
@@ -129,9 +131,9 @@ namespace Turbo.Plugins.DefaultOverride.BuffLists
                 var y = portraitRect.Top + portraitRect.Height * 0.51f;
 
                 // change
-                if (ShowOnPlayerFeet && (!Hud.Game.IsInTown || (player.IsOnScreen && !player.IsMe)))
+                if (ShowOnPlayer && (!Hud.Game.IsInTown || (player.IsOnScreen && !player.IsMe)))
                 {
-                    var screenCoordinate = player.FloorCoordinate.ToScreenCoordinate();
+                    var screenCoordinate = OffsetZ != 0 ? player.FloorCoordinate.Offset(0, 0, OffsetZ).ToScreenCoordinate() : player.FloorCoordinate.ToScreenCoordinate();
                     x = screenCoordinate.X - _ruleCalculator.StandardIconSize * _ruleCalculator.PaintInfoList.Count / 2f;
                     y = screenCoordinate.Y + _ruleCalculator.StandardIconSize;
                 }
