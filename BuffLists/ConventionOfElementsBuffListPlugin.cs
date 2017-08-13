@@ -66,6 +66,7 @@ namespace Turbo.Plugins.DefaultOverride.BuffLists
                     case HeroClass.Monk: if (i == 1 || i == 7) continue; break;
                     case HeroClass.WitchDoctor: if (i == 1 || i == 4 || i == 5) continue; break;
                     case HeroClass.Wizard: if (i == 4 || i == 6 || i == 7) continue; break;
+                    case HeroClass.Necromancer: if (i == 1 || i == 3 || i == 4 || i == 5) continue; break;
                 }
                 yield return _ruleCalculator.Rules[i - 1];
             }
