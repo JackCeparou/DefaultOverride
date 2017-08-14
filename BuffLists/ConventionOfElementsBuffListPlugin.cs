@@ -11,6 +11,7 @@ namespace Turbo.Plugins.DefaultOverride.BuffLists
         public bool HideWhenUiIsHidden { get; set; }
         // change
         public bool ShowOnPlayer { get; set; }
+        public bool ShowOnOtherPlayers { get; set; }
         public float OffsetZ { get; set; }
         // end change
         public BuffPainter BuffPainter { get; set; }
@@ -29,6 +30,7 @@ namespace Turbo.Plugins.DefaultOverride.BuffLists
             HideWhenUiIsHidden = false;
             // change
             ShowOnPlayer = true;
+            ShowOnOtherPlayers = true;
             OffsetZ = 0.0f;
             // end change
             BuffPainter = new BuffPainter(Hud, true)
@@ -80,6 +82,7 @@ namespace Turbo.Plugins.DefaultOverride.BuffLists
             foreach (var player in Hud.Game.Players)
             {
                 if (player.ActorId == 0) continue;
+                if (!ShowOnOtherPlayers && !player.IsMe) continue;
 
                 var buff = player.Powers.GetBuff(430674);
                 if ((buff == null) || (buff.IconCounts[0] <= 0)) continue;
